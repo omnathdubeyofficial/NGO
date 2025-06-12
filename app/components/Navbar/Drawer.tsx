@@ -1,8 +1,6 @@
-import React, {ReactNode , useState, useEffect } from "react";
-
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import React, { ReactNode, useEffect } from "react";
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
-
 
 interface DrawerProps {
     children: ReactNode;
@@ -11,71 +9,60 @@ interface DrawerProps {
 }
 
 const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
-
-        const [isScrolled, setIsScrolled] = useState(false);
-    
-        useEffect(() => {
-            const handleScroll = () => {
-                if (window.scrollY > 50) {
-                    setIsScrolled(true);
-                } else {
-                    setIsScrolled(false);
-                }
-            };
-    
-            window.addEventListener("scroll", handleScroll);
-            return () => window.removeEventListener("scroll", handleScroll);
-        }, []);
+    // Disable background scroll when drawer is open
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "auto";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isOpen]);
 
     return (
         <main
-            className={
-                " fixed overflow-hidden z-10 bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out " +
-                (isOpen
-                    ? " transition-opacity opacity-100 duration-500 translate-x-0  "
-                    : " transition-all delay-500 opacity-0 -translate-x-full  ")
-            }
+            className={`fixed inset-0 z-50 transition-opacity duration-300 ${
+                isOpen ? "bg-black bg-opacity-50" : "pointer-events-none opacity-0"
+            }`}
         >
-            <section
-                className={
-                    "w-340px max-w-lg left-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform " +
-                    (isOpen ? "translate-x-0" : "-translate-x-full")
-                }
+            {/* Overlay click area */}
+            <div
+                className="absolute inset-0 cursor-pointer"
+                onClick={() => setIsOpen(false)}
+            />
+
+            {/* Slide-in Drawer Panel */}
+            <aside
+                className={`fixed top-0 left-0 h-full w-[320px] bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+                    isOpen ? "translate-x-0" : "-translate-x-full"
+                }`}
             >
+                {/* Header */}
+                <header className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+                    <Link href="/" className="flex items-center gap-2">
+                        <img
+                            src="/images/logo-removebg-preview.png"
+                            alt="The Vision Sports Logo"
+                            className="h-12 w-auto object-contain"
+                        />
+                    </Link>
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="text-gray-500 hover:text-gray-700 transition"
+                        aria-label="Close menu"
+                    >
+                        <XMarkIcon className="w-6 h-6" />
+                    </button>
+                </header>
 
-                <article className="relative w-340px max-w-lg pb-10 flex flex-col space-y-6 h-full">
-                    <header className="px-4 py-4 flex items-center">
-
-                           <div className="flex flex-shrink-0 items-center border-right">
-                                <Link href="/" className="flex items-center">
-                                <img
-    src="/images/logo-removebg-preview.png"
-    alt="The Vision Sports Logo"
-    className={`object-contain transition-all duration-300 ${
-        isScrolled ? "h-10 sm:h-14" : "h-16 sm:h-20"
-    }`}
-/>
-
-                                </Link>
-                            </div>
-
-                        <XMarkIcon className="block h-6 w-6" onClick={() => {
-                            setIsOpen(false);
-                        }} />
-                    </header>
-                    <div onClick={() => {
-                        setIsOpen(false);
-                    }}>{children}</div>
-                </article>
-            </section>
-            <section
-                className="w-screen h-full cursor-pointer "
-                onClick={() => {
-                    setIsOpen(false);
-                }}
-            ></section>
+                {/* Scrollable Content */}
+                <div
+                    className="flex-1 overflow-y-auto px-5 py-6 space-y-4"
+                    onClick={() => setIsOpen(false)}
+                >
+                    {children}
+                </div>
+            </aside>
         </main>
     );
-}
+};
 
 export default Drawer;

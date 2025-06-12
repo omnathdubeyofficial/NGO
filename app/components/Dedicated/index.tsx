@@ -1,27 +1,68 @@
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Dedicated = () => {
-    return (
-        <div className="relative" style={{ fontFamily: 'Hind, sans-serif' }}>
-            <img src="/images/dedicated/spiral.svg" height={272} width={686} alt="spiral-design" className="absolute left-0 hidden lg:block -z-10" />
-            
-            <div className='mx-auto max-w-7xl px-4 my-40 sm:py-20 lg:px-8'>
-                <div className='grid grid-cols-1 md:grid-cols-2 my-16'>
-                    {/* COLUMN-1 */}
-                    <div>
-                        <img src="/images/logo.jpg" alt="man-icon" width={416} height={530} className="mx-auto md:mx-0" />
-                    </div>
+  const slides = [
+    "https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/6646847/pexels-photo-6646847.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=600",
+  ];
 
-                    {/* COLUMN-2 */}
-                    <div className="relative">
-                        <img src="images/dedicated/comma.svg" alt="comma-image" width={200} height={106} className="absolute comma-pos hidden lg:block" />
-                        <h2 className="text-4xl lg:text-65xl pt-4 font-bold sm:leading-tight mt-5 text-center lg:text-start">हमारी सेवा समाज की सेवा के लिए समर्पित है।</h2>
-                        <p className="font-medium text-lightblack text-2xl mt-5 text-center lg:text-start">हमारा उद्देश्य समाज में बदलाव लाना है और जरूरतमंद लोगों को सहारा देना है। हम हर वर्ग के लोगों के लिए काम करते हैं, ताकि उनकी ज़िंदगी में सकारात्मक बदलाव आ सके।</p>
-                        <p className="text-2xl font-semibold mt-12 lg:ml-35 preline text-center lg:text-start">भागीरथ सहयोग सेवा संस्थान</p>
-                    </div>
-                </div>
+  const content = {
+    heading: "Our service is dedicated to serving society",
+    text: "Bhagirath Sahayog Seva Sansthan is a dedicated initiative working towards community development, education, and empowerment. Join hands with us in this journey of transformation.",
+    button: "Explore",
+  };
+
+  const Section = ({ reverse }: { reverse?: boolean }) => (
+    <div
+      className={`w-full max-w-7xl mx-auto px-4 py-10 flex flex-col ${
+        reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+      } items-center gap-8`}
+    >
+      {/* Carousel Section */}
+      <div className="w-full lg:w-1/2 order-1 lg:order-none animate-fade-in-left">
+        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+          {slides.map((src, index) => (
+            <div key={index}>
+              <Image
+                src={src}
+                alt={`Slide ${index + 1}`}
+                width={600}
+                height={400}
+                className="rounded-xl w-full h-auto object-cover"
+              />
             </div>
-        </div>
-    )
-}
+          ))}
+        </Carousel>
+      </div>
+
+      {/* Content Section */}
+      <div className="w-full lg:w-1/2 space-y-6 order-2 animate-fade-in-right text-center lg:text-left">
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-darkpurple leading-tight">
+          {content.heading}
+        </h1>
+        <p className="text-base sm:text-lg text-gray-700 max-w-xl mx-auto lg:mx-0">
+          {content.text}
+        </p>
+        <button className="bg-blue text-white px-8 py-3 rounded-full hover:bg-hoblue shadow-lg transition">
+          {content.button}
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="bg-gray-50">
+      <Section />
+      <Section reverse />
+      <Section />
+    </div>
+  );
+};
 
 export default Dedicated;

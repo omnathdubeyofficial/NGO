@@ -1,24 +1,24 @@
 import './globals.css';
 import Navbar from './components/Navbar/index';
-// import Footer from './components/Footer/index';
+import Footer from './components/Footer/index';
 
 export const metadata = {
-  title: 'भागीरथ सहयोग सेवा संस्थान',
-  description: 'भागीरथ सहयोग सेवा संस्थान',
-}
+  title: 'Bhagirath Sahyog Seva Sansthan',
+  description: 'Bhagirath Sahyog Seva Sansthan',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body>
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
-  )
+  );
 }

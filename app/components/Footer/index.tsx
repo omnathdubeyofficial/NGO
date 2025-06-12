@@ -1,100 +1,103 @@
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaWhatsapp,
+  FaXTwitter
+} from "react-icons/fa6";
 
-// MIDDLE LINKS DATA
-interface ProductType {
-    id: number;
-    section: string;
-    link: string[];
-}
+const footerLinks = [
+  {
+    title: "About Us",
+    items: [
+      "Our Mission",
+      "Our Values",
+      "Our Founder",
+      "Our Initiatives",
+      "Our Impact",
+      "Our Disaster Focus",
+      "Internship",
+      "Careers",
+      "Corporate Information",
+    ],
+  },
+  {
+    title: "Team & Governance",
+    items: [
+      "Governance Team",
+      "Team",
+      "Annual Report",
+      "Financial",
+      "Chapter Report",
+    ],
+  },
+  {
+    title: "Get Involved",
+    items: [
+      "Contact",
+      "Individual",
+      "Corporates",
+      "Institutions",
+      "Collection Camps",
+      "Dropping Centers",
+      "Events",
+    ],
+  },
+  {
+    title: "Programs",
+    items: [
+      "Past Initiatives",
+      "News",
+      "Resources",
+    ],
+  },
 
-const products: ProductType[] = [
-    {
-        id: 1,
-        section: "Menu",
-        link: ['Home', 'Popular', 'About', 'Contact'],
-    },
-    {
-        id: 2,
-        section: "Category",
-        link: ['Design', 'Mockup', 'View all', 'Log In']
-    },
-    {
-        id: 3,
-        section: "Pages",
-        link: ['404', 'Instructions', 'License']
-    },
-    {
-        id: 4,
-        section: "Others",
-        link: ['Styleguide', 'Changelog']
-    }
-]
+];
 
-const footer = () => {
-    return (
-        <div className="bg-black -mt-40" id="first-section">
-            <div className="mx-auto max-w-2xl pt-48 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="mt-24 grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 lg:grid-cols-12 xl:gap-x-8">
-
-                    {/* COLUMN-1 */}
-
-                    <div className='col-span-4'>
-                        <h3 className='text-white text-4xl font-semibold leading-9 mb-4 lg:mb-20'> Desgy Solutions</h3>
-                        <div className='flex gap-4'>
-                            <div className='footer-icons'>
-                                <Link href="https://facebook.com"><Image src={'/images/footer/vec.svg'} alt="facebook" width={15} height={20} /></Link>
-                            </div>
-                            <div className='footer-icons'>
-                                <Link href="https://twitter.com"><Image src={'/images/footer/twitter.svg'} alt="twitter" width={20} height={20} /></Link>
-                            </div>
-                            <div className='footer-icons'>
-                                <Link href="https://instagram.com"><Image src={'/images/footer/instagram.svg'} alt="instagram" width={20} height={20} /></Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* CLOUMN-2/3 */}
-
-                    {products.map((product) => (
-                        <div key={product.id} className="group relative col-span-2">
-                            <p className="text-white text-xl font-extrabold mb-9">{product.section}</p>
-                            <ul>
-                                {product.link.map((link: string, index: number) => (
-                                    <li key={index} className='mb-5'>
-                                        <Link href="/" className="text-white text-lg font-normal mb-6 space-links">{link}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-
-                </div>
-            </div>
-
-            {/* All Rights Reserved */}
-
-            <div className="mx-auto max-w-2xl lg:max-w-7xl">
-                <div className="pt-5 pb-5 px-4 sm:px-6 lg:px-4 border-solid border-t border-footer">
-                    <div className="mt-4 grid grid-cols-1 gap-y-10 gap-x-16 sm:grid-cols-2 xl:gap-x-8">
-                        <div>
-                            <h3 className='text-center md:text-start text-offwhite text-lg'>@2023 - All Rights Reserved by <Link href="https://adminmart.com/" target="_blank"> Adminmart.com</Link></h3>
-                        </div>
-                        <div className="flex justify-center md:justify-end">
-                            <Link href="/">
-                                <h3 className="text-offwhite pr-6">Privacy policy</h3>
-                            </Link>
-                            <Link href="/">
-                                <h3 className="text-offwhite pl-6 border-solid border-l border-footer">Terms & conditions</h3>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+const Footer = () => {
+  return (
+    <footer className="bg-white text-black pt-20 pb-8 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-12">
+        {/* Logo & Social */}
+        <div>
+          <Image src="/images/logo-removebg-preview.png" alt="Bhagirath Logo" width={180} height={60} className="mb-6" />
+          <p className="text-sm mb-6 leading-relaxed">
+            Bhagirath Sahayog Seva Sansthan is committed to uplifting the underprivileged through holistic programs in health, education, and sustainable development.
+          </p>
+          <div className="flex gap-3">
+            <a href="#" className="w-9 h-9 flex items-center justify-center border border-black rounded-full hover:bg-white hover:text-black transition"><FaFacebookF /></a>
+            <a href="#" className="w-9 h-9 flex items-center justify-center border border-black rounded-full hover:bg-white hover:text-black transition"><FaInstagram /></a>
+            <a href="#" className="w-9 h-9 flex items-center justify-center border border-black rounded-full hover:bg-white hover:text-black transition"><FaYoutube /></a>
+            <a href="#" className="w-9 h-9 flex items-center justify-center border border-black rounded-full hover:bg-white hover:text-black transition"><FaWhatsapp /></a>
+            <a href="#" className="w-9 h-9 flex items-center justify-center border border-black rounded-full hover:bg-white hover:text-black transition"><FaXTwitter /></a>
+          </div>
         </div>
 
-    )
-}
+        {/* Footer Menus */}
+        {footerLinks.map((group, idx) => (
+          <div key={idx}>
+            <h3 className="text-lg font-semibold mb-4">{group.title}</h3>
+            <ul className="space-y-2">
+              {group.items.map((item, i) => (
+                <li key={i}>
+                  <Link href="#" className="hover:underline text-sm">{item}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
 
-export default footer;
+      {/* Bottom Strip */}
+      <div className="border-t border-gray-800 mt-16 pt-6 text-center text-sm text-gray-400">
+        <p>© {new Date().getFullYear()} Bhagirath Sahayog Seva Sansthan. All Rights Reserved.</p>
+        <p className="mt-1">Designed & Developed by Omnath Dubey | <Link href="https://vaekon.com" className="hover:underline text-black">Vaekon InfoTech</Link></p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

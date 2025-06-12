@@ -1,220 +1,178 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+// Razorpay global declaration
 declare global {
-    interface Window {
-        Razorpay: any;
-    }
+  interface Window {
+    Razorpay: any;
+  }
 }
 
 const Banner = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
-    const [name, setName] = useState<string>("");
-    const [mobile, setMobile] = useState<string>("");
-    const [errors, setErrors] = useState<{ name?: string; mobile?: string; amount?: string }>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [name, setName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [errors, setErrors] = useState<{ name?: string; mobile?: string; amount?: string }>({});
 
-    // Dynamically load Razorpay script
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "https://checkout.razorpay.com/v1/checkout.js";
-        script.async = true;
-        document.body.appendChild(script);
-        return () => {
-            document.body.removeChild(script);
-        };
-    }, []);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
-    const toggleModal = () => {
-        setIsModalOpen((prev) => !prev);
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
+
+  const handleAmountSelection = (amount: number) => {
+    setSelectedAmount(amount);
+    setErrors((prev) => ({ ...prev, amount: "" }));
+  };
+
+  const handleSubmit = () => {
+    const validationErrors: { name?: string; mobile?: string; amount?: string } = {};
+    if (!name.trim()) validationErrors.name = "Please enter your name!";
+    if (!mobile.trim()) validationErrors.mobile = "Please enter mobile number!";
+    else if (!/^[0-9]{10}$/.test(mobile)) validationErrors.mobile = "Please enter a valid mobile number!";
+    if (selectedAmount === null) validationErrors.amount = "Please select a donation amount!";
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    initiatePayment();
+  };
+
+  const initiatePayment = () => {
+    if (typeof window.Razorpay === "undefined") return console.error("Razorpay SDK not loaded");
+
+    const options = {
+      key: "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+      amount: selectedAmount! * 100,
+      currency: "INR",
+      name: "Bhagirath Sahayog Seva Sansthan",
+      description: "Thank you for your donation",
+      handler: function (response: any) {
+        console.log("Payment successful!", response);
+        setIsModalOpen(false);
+        setName("");
+        setMobile("");
+        setSelectedAmount(null);
+        setErrors({});
+      },
+      prefill: {
+        name: name,
+        contact: mobile,
+      },
+      theme: {
+        color: "#3399cc",
+      },
     };
 
-    const handleAmountSelection = (amount: number) => {
-        setSelectedAmount(amount);
-        setErrors((prev) => ({ ...prev, amount: "" })); // Clear amount error
-    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
 
-    const handleSubmit = () => {
-        const validationErrors: { name?: string; mobile?: string; amount?: string } = {};
+  return (
+    <div className="w-full max-w-7xl mx-auto px-4 pt-28 grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
+      {/* Left Carousel Section */}
+      <div className="animate-fade-in-left">
+        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+          <div>
+            <Image src="https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 1" width={600} height={400} className="rounded-xl" />
+          </div>
+          <div>
+            <Image src="https://images.pexels.com/photos/6646847/pexels-photo-6646847.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 2" width={600} height={400} className="rounded-xl" />
+          </div>
+          <div>
+            <Image src="https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 3" width={600} height={400} className="rounded-xl" />
+          </div>
+        </Carousel>
+      </div>
 
-        if (!name.trim()) {
-            validationErrors.name = "कृपया अपना नाम दर्ज करें!";
-        }
+      {/* Right Content Section */}
+      <div className="space-y-6 animate-fade-in-right">
+        <h2 className="text-xl font-semibold text-green-700">Bhagirath Sahayog Seva Sansthan</h2>
+        <h1 className="text-4xl lg:text-6xl font-bold text-darkpurple leading-tight">
+          Walk Together,<br />Change Society!
+        </h1>
+        <p className="text-lg text-gray-700 max-w-xl">
+          Bhagirath Sahayog Seva Sansthan is a dedicated initiative working towards community development, education,
+          and empowerment. Join hands with us in this journey of transformation.
+        </p>
+        <button
+          onClick={toggleModal}
+          className="bg-blue text-white px-8 py-3 rounded-full hover:bg-hoblue shadow-lg transition"
+        >
+          Donate Now
+        </button>
+      </div>
 
-        if (!mobile.trim()) {
-            validationErrors.mobile = "कृपया मोबाइल नंबर दर्ज करें!";
-        } else if (!/^\d{10}$/.test(mobile)) {
-            validationErrors.mobile = "कृपया सही मोबाइल नंबर दर्ज करें!";
-        }
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg w-full max-w-md animate-fade-in-up">
+            <h2 className="text-center text-xl font-bold mb-4">Donation Form</h2>
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                setErrors((prev) => ({ ...prev, name: "" }));
+              }}
+              className="border p-2 w-full rounded mb-2"
+            />
+            {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
 
-        if (selectedAmount === null) {
-            validationErrors.amount = "कृपया दान राशि चुनें!";
-        }
+            <input
+              type="tel"
+              placeholder="Mobile Number"
+              value={mobile}
+              onChange={(e) => {
+                setMobile(e.target.value);
+                setErrors((prev) => ({ ...prev, mobile: "" }));
+              }}
+              className="border p-2 w-full rounded mb-2"
+            />
+            {errors.mobile && <p className="text-red-500 text-sm mb-2">{errors.mobile}</p>}
 
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-
-        initiatePayment();
-    };
-
-    const initiatePayment = () => {
-        if (typeof window.Razorpay === "undefined") {
-            console.error("Razorpay SDK not loaded");
-            return;
-        }
-
-        const options = {
-            key: "NJHFKJDSKFHDS", // Replace with your Razorpay key_id
-            amount: selectedAmount! * 100, // Convert amount to paise
-            currency: "INR",
-            name: "भागीरथ सहयोग सेवा संस्थान",
-            description: "दान के लिए धन्यवाद",
-            handler: function (response: any) {
-                console.log("Payment successful!", response);
-                setIsModalOpen(false);
-                setName("");
-                setMobile("");
-                setSelectedAmount(null);
-                setErrors({});
-            },
-            prefill: {
-                name: name,
-                contact: mobile,
-            },
-            theme: {
-                color: "#3399cc",
-            },
-        };
-
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();
-    };
-
-    return (
-        <div className="mx-auto max-w-7xl my-10 sm:py-10 px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 my-16 gap-10">
-                <div className="mx-auto sm:mx-0" style={{ fontFamily: "Hind, sans-serif" }}>
-                    <div className="py-3 text-center lg:text-start">
-                        <button className="text-sm md:text-lg font-bold px-6 py-1 border border-green-700 text-green-700 rounded-3xl tracking-wider">
-                            भागीरथ सहयोग सेवा संस्थान
-                        </button>
-                    </div>
-                    <div className="py-3 text-center lg:text-start">
-                        <h1 className="text-4xl md:text-6xl lg:text-80xl font-bold text-darkpurple">
-                            साथ चलें <br /> समाज बदलें!
-                        </h1>
-                    </div>
-                    <div className="text-center lg:text-start py-4 md:py-6">
-                        <p className="text-sm md:text-lg lg:text-xl text-gray-700 max-w-xl mx-auto">
-                            भागीरथ सहयोग सेवा संस्थान एक समर्पित प्रयास है, जो सामुदायिक <br />
-                            विकास, शिक्षा, और सशक्तिकरण के माध्यम से एक उज्जवल भविष्य <br />
-                            की ओर कदम बढ़ाता है। आइए, साथ मिलकर बदलाव की इस यात्रा <br />
-                            का हिस्सा बनें।
-                        </p>
-                    </div>
-                    <div className="my-6 text-center lg:text-start">
-                        <button
-                            onClick={toggleModal}
-                            className="text-sm md:text-xl font-semibold hover:shadow-xl bg-blue text-white py-3 px-6 md:py-5 md:px-14 rounded-full hover:bg-hoblue"
-                        >
-                            दान करें!
-                        </button>
-                    </div>
-                </div>
-                <div className="lg:-m-24 lg:pt-20 flex justify-center">
-                    <img
-                        src="/images/banner/banner.svg"
-                        alt="hero"
-                        width={800}
-                        height={642}
-                        className="lg:block md:w-full sm:w-3/4 max-w-full"
-                    />
-                </div>
-            </div>
-            {isModalOpen && (
-                <div
-                    className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
-                    style={{ fontFamily: "Hind, sans-serif" }}
+            <div className="grid grid-cols-3 gap-2 my-4">
+              {[1, 11, 51, 101, 501, 1001, 2001, 5001, 10001].map((amount) => (
+                <button
+                  key={amount}
+                  type="button"
+                  onClick={() => handleAmountSelection(amount)}
+                  className={`p-2 rounded border text-sm font-semibold transition ${{
+                    true: "bg-blue text-white",
+                    false: "hover:bg-gray-100",
+                  }[selectedAmount === amount]}`}
                 >
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-lg font-bold mb-4 text-center">दान फॉर्म</h2>
-                        <form>
-                            <div className="mb-4">
-                                <input
-                                    type="text"
-                                    placeholder="नाम दर्ज करें"
-                                    value={name}
-                                    onChange={(e) => {
-                                        setName(e.target.value);
-                                        setErrors((prev) => ({ ...prev, name: "" }));
-                                    }}
-                                    className="border p-2 rounded w-full"
-                                    required
-                                />
-                                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
-                            </div>
-                            <div className="mb-4">
-                                <input
-                                    type="tel"
-                                    placeholder="मोबाइल नंबर दर्ज करें"
-                                    value={mobile}
-                                    onChange={(e) => {
-                                        setMobile(e.target.value);
-                                        setErrors((prev) => ({ ...prev, mobile: "" }));
-                                    }}
-                                    className="border p-2 rounded w-full"
-                                    required
-                                />
-                                {errors.mobile && (
-                                    <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>
-                                )}
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 mb-4">
-                                {[1, 11, 51, 101, 501, 1001, 2001, 5001, 10001, 15001, 20001, 25001].map(
-                                    (amount) => (
-                                        <button
-                                            type="button"
-                                            key={amount}
-                                            onClick={() => handleAmountSelection(amount)}
-                                            className={`border py-2 px-4 rounded ${
-                                                selectedAmount === amount
-                                                    ? "bg-blue text-white"
-                                                    : "hover:bg-gray-200"
-                                            }`}
-                                        >
-                                            ₹{amount}
-                                        </button>
-                                    )
-                                )}
-                            </div>
-                            {errors.amount && (
-                                <p className="text-red-500 text-sm mt-1">{errors.amount}</p>
-                            )}
-                            <div className="flex justify-end">
-                                <button
-                                    type="button"
-                                    onClick={toggleModal}
-                                    className="text-gray-600 mr-4"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={handleSubmit}
-                                    className="bg-blue text-white py-2 px-6 rounded"
-                                >
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+                  ₹{amount}
+                </button>
+              ))}
+            </div>
+            {errors.amount && <p className="text-red-500 text-sm mb-2">{errors.amount}</p>}
+
+            <div className="flex justify-end gap-4">
+              <button onClick={toggleModal} className="text-gray-600">Cancel</button>
+              <button onClick={handleSubmit} className="bg-blue text-white px-4 py-2 rounded">
+                Submit
+              </button>
+            </div>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default Banner;
