@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outli
 import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
 import Contactusform from "./Contactus";
+import Image from "next/image";
 
 const navItems = [
   { name: "About Us", href: "#aboutus" },
@@ -70,10 +71,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link href="/">
-            <img
+            <Image
               src="/images/logo-removebg-preview.png"
               alt="NGO Logo"
               className="h-10 sm:h-14 object-contain"
+              width={300}
+              height={300}
             />
           </Link>
 

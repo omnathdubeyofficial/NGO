@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 const Digital = () => {
     return (
@@ -22,7 +23,7 @@ const Digital = () => {
 
                     <div>
                         <div className="lg:absolute girldoodle">
-                            <img src="/images/digital/girldoodle.svg" alt="girldoodle" width={815} height={691} />
+                            <Image src="/images/digital/girldoodle.svg" alt="girldoodle" width={815} height={691} />
                         </div>
                     </div>
 

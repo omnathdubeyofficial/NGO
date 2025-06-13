@@ -83,22 +83,9 @@ const Banner = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 pt-28 grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
-      {/* Left Carousel Section */}
-      <div className="animate-fade-in-left">
-        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
-          <div>
-            <Image src="https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 1" width={600} height={400} className="rounded-xl" />
-          </div>
-          <div>
-            <Image src="https://images.pexels.com/photos/6646847/pexels-photo-6646847.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 2" width={600} height={400} className="rounded-xl" />
-          </div>
-          <div>
-            <Image src="https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 3" width={600} height={400} className="rounded-xl" />
-          </div>
-        </Carousel>
-      </div>
 
-      {/* Right Content Section */}
+
+       {/* Left Content Section */}
       <div className="space-y-6 animate-fade-in-right">
         <h2 className="text-xl font-semibold text-green-700">Bhagirath Sahayog Seva Sansthan</h2>
         <h1 className="text-4xl lg:text-6xl font-bold text-darkpurple leading-tight">
@@ -115,6 +102,22 @@ const Banner = () => {
           Donate Now
         </button>
       </div>
+      {/* Right Carousel Section */}
+      <div className="animate-fade-in-left">
+        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+          <div>
+            <Image src="https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 1" width={600} height={400} className="rounded-xl" />
+          </div>
+          <div>
+            <Image src="https://images.pexels.com/photos/6646847/pexels-photo-6646847.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 2" width={600} height={400} className="rounded-xl" />
+          </div>
+          <div>
+            <Image src="https://images.pexels.com/photos/6994982/pexels-photo-6994982.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Slide 3" width={600} height={400} className="rounded-xl" />
+          </div>
+        </Carousel>
+      </div>
+
+     
 
       {/* Modal */}
       {isModalOpen && (
@@ -145,21 +148,21 @@ const Banner = () => {
             />
             {errors.mobile && <p className="text-red-500 text-sm mb-2">{errors.mobile}</p>}
 
-            <div className="grid grid-cols-3 gap-2 my-4">
-              {[1, 11, 51, 101, 501, 1001, 2001, 5001, 10001].map((amount) => (
-                <button
-                  key={amount}
-                  type="button"
-                  onClick={() => handleAmountSelection(amount)}
-                  className={`p-2 rounded border text-sm font-semibold transition ${{
-                    true: "bg-blue text-white",
-                    false: "hover:bg-gray-100",
-                  }[selectedAmount === amount]}`}
-                >
-                  ₹{amount}
-                </button>
-              ))}
-            </div>
+           <div className="grid grid-cols-3 gap-2 my-4">
+  {[1, 11, 51, 101, 501, 1001, 2001, 5001, 10001].map((amount) => (
+    <button
+      key={amount}
+      type="button"
+      onClick={() => handleAmountSelection(amount)}
+      className={`p-2 rounded border text-sm font-semibold transition ${
+        selectedAmount === amount ? "bg-blue text-white" : "hover:bg-gray-100"
+      }`}
+    >
+      ₹{amount}
+    </button>
+  ))}
+</div>
+
             {errors.amount && <p className="text-red-500 text-sm mb-2">{errors.amount}</p>}
 
             <div className="flex justify-end gap-4">

@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
+import Image from "next/image";
 
 interface DrawerProps {
     children: ReactNode;
@@ -38,10 +39,12 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
                 {/* Header */}
                 <header className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
                     <Link href="/" className="flex items-center gap-2">
-                        <img
+                        <Image
                             src="/images/logo-removebg-preview.png"
-                            alt="The Vision Sports Logo"
+                            alt="Ngo logo"
                             className="h-12 w-auto object-contain"
+                            width={300}
+                            height={300}
                         />
                     </Link>
                     <button
