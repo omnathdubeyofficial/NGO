@@ -133,9 +133,9 @@ const Dedicated = () => {
 
       {/* Our Team */}
       <div className="text-center mt-20 px-2">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-indigo-900 mb-12">
+        {/* <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-indigo-900 mb-12">
           Meet Our Team
-        </h2>
+        </h2> */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
           {teamData.map((member, index) => (
             <div
