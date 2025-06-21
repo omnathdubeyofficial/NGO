@@ -13,49 +13,63 @@ const footerLinks = [
   {
     title: "About Us",
     items: [
-      "Our Mission",
-      "Our Values",
-      "Our Founder",
-      "Our Initiatives",
-      "Our Impact",
-      "Our Disaster Focus",
-      "Internship",
-      "Careers",
-      "Corporate Information",
+      { name: "In the News", href: "/about/in-the-news" },
+      { name: "Recognized and Encouraged", href: "/about/recognized" },
+      { name: "A Step Towards Greener Earth", href: "/about/green-earth" },
+      { name: "Clean Ganga Initiative", href: "/about/clean-ganga" },
+      { name: "Our Mission", href: "/about/mission" },
+      { name: "Our Vision", href: "/about/vision" },
+      { name: "Problems We Solve", href: "/about/problems" },
+      { name: "Our Impact", href: "/about/impact" },
+      { name: "Our Team", href: "/about/team" },
     ],
   },
   {
-    title: "Team & Governance",
+    title: "Our Services and Commitments",
     items: [
-      "Governance Team",
-      "Team",
-      "Annual Report",
-      "Financial",
-      "Chapter Report",
+      { name: "Spreading Education & Awareness for Community Development", href: "/services/education-awareness" },
+      { name: "Empowering Society Through Healthcare Services", href: "/services/healthcare" },
+      { name: "Special Initiatives for Women Empowerment", href: "/services/women-empowerment" },
+      { name: "Promoting Natural Resource Conservation", href: "/services/resource-conservation" },
+      { name: "Fostering Child Development & Education", href: "/services/child-development" },
+      { name: "Establishing Equality & Peace in Society", href: "/services/equality-peace" },
     ],
   },
   {
-    title: "Get Involved",
+    title: "Get Involved", 
     items: [
-      "Contact",
-      "Individual",
-      "Corporates",
-      "Institutions",
-      "Collection Camps",
-      "Dropping Centers",
-      "Events",
+      { name: "Volunteer with Us", href: "/get-involved/volunteer" },
+      { name: "Donate Now", href: "/get-involved/donate" },
+      { name: "Fundraise for a Cause", href: "/get-involved/fundraise" },
+      { name: "Become a Partner", href: "/get-involved/partner" },
+      { name: "Corporate Social Responsibility (CSR)", href: "/get-involved/csr" },
+      { name: "Internship Opportunities", href: "/get-involved/internship" },
+      { name: "Sponsor a Child", href: "/get-involved/sponsor-child" },
+      { name: "Join Our Events", href: "/get-involved/events" },
+      { name: "Start a Local Chapter", href: "/get-involved/local-chapter" },
+      { name: "Skill-Based Volunteering", href: "/get-involved/skill-volunteer" },
+      { name: "Spread the Word", href: "/get-involved/spread-word" },
     ],
   },
   {
     title: "Programs",
     items: [
-      "Past Initiatives",
-      "News",
-      "Resources",
+      { name: "Health & Sanitation", href: "/programs/health-sanitation" },
+      { name: "Education & Literacy", href: "/programs/education-literacy" },
+      { name: "Women Empowerment", href: "/programs/women-empowerment" },
+      { name: "Child Welfare", href: "/programs/child-welfare" },
+      { name: "Youth Skill Development", href: "/programs/youth-skill" },
+      { name: "Environment & Sustainability", href: "/programs/environment" },
+      { name: "Disaster Relief & Emergency Support", href: "/programs/disaster-relief" },
+      { name: "Livelihood & Income Generation", href: "/programs/livelihood" },
+      { name: "Senior Citizen Support", href: "/programs/senior-support" },
+      { name: "Rural Development", href: "/programs/rural-development" },
+      { name: "Urban Slum Upliftment", href: "/programs/urban-slum" },
+      { name: "Cultural & Social Integration", href: "/programs/social-integration" },
     ],
   },
-
 ];
+
 
 const Footer = () => {
   return (
@@ -81,11 +95,12 @@ const Footer = () => {
           <div key={idx}>
             <h3 className="text-lg font-semibold mb-4">{group.title}</h3>
             <ul className="space-y-2">
-              {group.items.map((item, i) => (
-                <li key={i}>
-                  <Link href="#" className="hover:underline text-sm">{item}</Link>
-                </li>
-              ))}
+             {group.items.map((item, i) => (
+  <li key={i}>
+    <Link href={item.href} className="hover:underline text-sm">{item.name}</Link>
+  </li>
+))}
+
             </ul>
           </div>
         ))}
@@ -94,7 +109,7 @@ const Footer = () => {
       {/* Bottom Strip */}
       <div className="border-t border-gray-800 mt-16 pt-6 text-center text-sm text-gray-400">
         <p>© {new Date().getFullYear()} Bhagirath Sahayog Seva Sansthan. All Rights Reserved.</p>
-        <p className="mt-1">Designed & Developed by Omnath Dubey | <Link href="https://vaekon.com" className="hover:underline text-black">Vaekon InfoTech</Link></p>
+        <p className="mt-1">Designed & Developed by Omnath Dubey | <Link href="https://vaekon.com" className="hover:underline text-black">VaeKon InfoTech</Link></p>
       </div>
     </footer>
   );
