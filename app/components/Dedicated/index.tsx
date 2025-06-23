@@ -23,7 +23,7 @@ const Dedicated = () => {
   heading: "A Step Towards Greener Earth",
   text: "Bhagirath Sahayog Seva Sansthan has actively led tree plantation drives to promote environmental sustainability. Various medicinal and shade-giving trees like Peepal, Neem, Mango, and Amla have been planted across different locations. This green initiative is a meaningful step toward restoring ecological balance and ensuring a cleaner, healthier environment for future generations. Click the button below to view glimpses of our plantation efforts.",
   button: "View Plantation Highlights",
-  link: "/plantation_gallery",
+  link: "/components/GreenerEarth",
 }
 ,
  {
@@ -33,7 +33,7 @@ const Dedicated = () => {
   heading: "Recognized and Encouraged",
   text: "Bhagirath Sahayog Seva Sansthan has received appreciation and encouragement through multiple official letters and commendations from various authorities. These acknowledgments reflect the organization's dedication to social welfare and community upliftment. Click the button below to view these letters of recognition.",
   button: "View Appreciation Letters",
-  link: "/appreciation_letters",
+  link: "/components/appreciation_letters",
 }
 ,
     {
@@ -43,7 +43,7 @@ const Dedicated = () => {
   heading: "In the News",
   text: "Bhagirath Sahayog Seva Sansthan has consistently made headlines for its unwavering dedication to uplifting underprivileged communities. Through impactful livelihood training, skill development programs, and grassroots empowerment initiatives, the organization has earned recognition in several leading newspapers and media platforms. These stories highlight real transformation driven by the Sansthan's mission for sustainable change.",
   button: "Explore News",
-  link: "/new_cutting_page",
+  link: "/components/IntheNews",
 }
 
   ];
