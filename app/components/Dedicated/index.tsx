@@ -13,7 +13,7 @@ const Dedicated = () => {
   heading: "Clean Ganga Initiative",
   text: "Bhagirath Sahayog Seva Sansthan has undertaken dedicated efforts towards the cleaning and conservation of the sacred Ganga River. Through awareness drives, riverbank clean-up campaigns, and community participation, the Sansthan has contributed to preserving the purity and ecological balance of the river. These efforts reflect our deep commitment to environmental responsibility and cultural heritage. Click the button below to view highlights of the Ganga Cleanliness Drive.",
   button: "View Clean-Up Highlights",
-  link: "/ganga_clean_drive",
+  link: "/components/ViewCleanupHighlights",
 }
 ,
 {
