@@ -52,7 +52,7 @@ const AboutUs = () => {
     return (
         <div id="aboutus-section" >
             <div className='mx-auto max-w-7xl px-4  my-32 lg:px-10 bg-gray-100 rounded-3xl relative'>
-                <h1 className='text-center text-4xl lg:text-6xl font-bold text-gray-800 mb-16'>Our Services and Commitments</h1>
+                <h1 className='text-center text-4xl lg:text-6xl font-bold text-gray-800 mb-16'>Our Services and <a className="bg-navyblue text-white pl-3 pr-3">Commitments</a></h1>
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10'>
                     {aboutData.map((item, i) => (

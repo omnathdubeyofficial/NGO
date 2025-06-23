@@ -12,7 +12,7 @@ const Banner = () => {
       <div className="space-y-6 animate-fade-in-right">
         <h2 className="text-xl font-semibold text-emerald-600 uppercase tracking-wider">Bhagirath Sahayog Seva Sansthan</h2>
         <h1 className="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-          Walk Together,<br /> Transform Lives
+          Walk Together<br />Transform <a className="bg-navyblue text-white pl-3 pr-3">Lives</a>
         </h1>
         <p className="text-lg text-gray-700 max-w-xl">
           Join our mission to empower communities through education, environmental initiatives, and livelihood support. Every step with us is a stride towards a better tomorrow.
