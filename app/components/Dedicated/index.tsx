@@ -87,13 +87,13 @@ const Dedicated = () => {
 {/* <p className="text-base sm:text-lg text-gray-800  max-w-xl mx-auto lg:mx-0 px-6 py-4 rounded-xl transition duration-300 hover:bg-[#1B4332] hover:text-white font-serif">
   {text}
 </p> */}
-<p className="text-base sm:text-lg text-gray-800 hover:bg-[#E6F4EA] border border-gray-300 max-w-xl mx-auto lg:mx-0 px-6 py-4 rounded-xl transition duration-300 hover:border-green-900 hover:text-green-900 font-serif">
+<p className="text-base sm:text-lg text-gray-800 hover:bg-[#E6F4EA] border border-gray-300 max-w-xl mx-auto lg:mx-0 px-6 py-4  transition duration-300 hover:border-green-900 hover:text-green-900 font-serif">
   {text}
 </p>
 
 
         <Link href={link}>
-          <button className="bg-blue mt-4 text-white px-8 py-3 rounded-full hover:bg-hoblue shadow-lg transition">
+          <button className="bg-navyblue mt-4 text-white px-8 py-3  hover:bg-hoblue shadow-lg transition">
             {button}
           </button>
         </Link>
