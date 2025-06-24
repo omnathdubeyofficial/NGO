@@ -8,15 +8,16 @@ import Drawerdata from "./Drawerdata";
 import Contactusform from "./Contactus";
 
 const navItems = [
+  { name: "Home", href: "/" },
   { name: "About Us", href: "#aboutus" },
-  {
-    name: "Our Services",
-    subItems: [
-      { name: "Education Support", href: "#education" },
-      { name: "Health Campaigns", href: "#health" },
-      { name: "Women Empowerment", href: "#women" },
-    ],
-  },
+  // {
+  //   name: "Our Services",
+  //   subItems: [
+  //     { name: "Education Support", href: "#education" },
+  //     { name: "Health Campaigns", href: "#health" },
+  //     { name: "Women Empowerment", href: "#women" },
+  //   ],
+  // },
   {
     name: "Programs",
     subItems: [

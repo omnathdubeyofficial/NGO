@@ -81,13 +81,15 @@ const Dedicated = () => {
 
       {/* Content Section */}
       <div className="w-full lg:w-1/2 space-y-6 animate-fade-in-right text-left lg:text-left">
-        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-darkpurple leading-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-darkpurple leading-tight">
           {heading}
         </h1>
-<p className="text-base sm:text-lg text-gray-800 bg-[#E6F4EA] max-w-xl mx-auto lg:mx-0 px-6 py-4 rounded-xl transition duration-300 hover:bg-[#1B4332] hover:text-white font-serif">
+{/* <p className="text-base sm:text-lg text-gray-800  max-w-xl mx-auto lg:mx-0 px-6 py-4 rounded-xl transition duration-300 hover:bg-[#1B4332] hover:text-white font-serif">
+  {text}
+</p> */}
+<p className="text-base sm:text-lg text-gray-800 hover:bg-[#E6F4EA] border border-gray-300 max-w-xl mx-auto lg:mx-0 px-6 py-4 rounded-xl transition duration-300 hover:border-green-900 hover:text-green-900 font-serif">
   {text}
 </p>
-
 
 
         <Link href={link}>
