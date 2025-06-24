@@ -6,7 +6,11 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 
-const images = [
+
+
+type ImageItem = { src: string }; // ✅ Define a type for image items
+
+const images: ImageItem[] = [
   { src: "/images/ngo_news/ngo_news.jpeg" },
   { src: "/images/ngo_news/ngo_news1.jpeg" },
   { src: "/images/ngo_news/ngo_news2.jpeg" },
@@ -25,13 +29,14 @@ const images = [
 ];
 
 const IntheNews = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const lightboxRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null); // ✅ Type specified
+  const lightboxRef = useRef<HTMLDivElement | null>(null);
 
-  const openLightbox = (img) => setSelectedImage(img);
+  const openLightbox = (img: ImageItem) => setSelectedImage(img); // ✅ Fixed typing
   const closeLightbox = () => setSelectedImage(null);
 
-  const navigateLightbox = (direction) => {
+  const navigateLightbox = (direction: "next" | "prev") => {
+    if (!selectedImage) return;
     const currentIndex = images.findIndex((img) => img.src === selectedImage.src);
     const nextIndex =
       direction === "next"
@@ -69,15 +74,18 @@ const IntheNews = () => {
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
     
     {/* Left Side - Image */}
-    <motion.div
+
+       <motion.div
       className="w-full lg:w-1/2"
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <img
-        src="https://images.pexels.com/photos/3030823/pexels-photo-3030823.jpeg" // <-- Replace with your actual image path
-        alt="News Coverage"
+      <Image
+        src="https://images.pexels.com/photos/3030823/pexels-photo-3030823.jpeg"
+        alt="desc"
+        width={500}
+        height={300}
         className="w-full h-auto rounded-xl shadow-lg object-cover"
       />
     </motion.div>

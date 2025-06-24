@@ -9,21 +9,22 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 
-const images = [
+type ImageItem = { src: string }; // ✅ Define a type for image items
 
+const images: ImageItem[] = [
   { src: "/images/ngo_cle/cle_ngo1.jpeg" },
-  { src:  "/images/ngo_cle/cle_ngo.jpeg" },
-
+  { src: "/images/ngo_cle/cle_ngo.jpeg" },
 ];
 
 const ViewCleanupHighlights = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const lightboxRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null); // ✅ Type specified
+  const lightboxRef = useRef<HTMLDivElement | null>(null);
 
-  const openLightbox = (img) => setSelectedImage(img);
+  const openLightbox = (img: ImageItem) => setSelectedImage(img); // ✅ Fixed typing
   const closeLightbox = () => setSelectedImage(null);
 
-  const navigateLightbox = (direction) => {
+  const navigateLightbox = (direction: "next" | "prev") => {
+    if (!selectedImage) return;
     const currentIndex = images.findIndex((img) => img.src === selectedImage.src);
     const nextIndex =
       direction === "next"
@@ -61,15 +62,19 @@ const ViewCleanupHighlights = () => {
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
     
     {/* Left Side - Image */}
-    <motion.div
+
+
+       <motion.div
       className="w-full lg:w-1/2"
       initial={{ opacity: 0, x: -30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <img
-        src="https://images.pexels.com/photos/31000122/pexels-photo-31000122.jpeg" // <-- Replace with your actual image path
-        alt="News Coverage"
+      <Image
+        src="https://images.pexels.com/photos/31000122/pexels-photo-31000122.jpeg"
+        alt="desc"
+        width={500}
+        height={300}
         className="w-full h-auto rounded-xl shadow-lg object-cover"
       />
     </motion.div>
@@ -85,9 +90,9 @@ const ViewCleanupHighlights = () => {
         🌊 Clean Ganga Initiative – A Sacred Commitment
       </h1>
       <p className="text-base sm:text-lg text-gray-600 max-w-2xl mb-6">
-Led by Bhagirath Sahayog Seva Sansthan, the Clean Ganga Initiative is more than just an effort to clean a river — it's a reflection of our cultural, spiritual, and environmental responsibility.
+Led by Bhagirath Sahayog Seva Sansthan, the Clean Ganga Initiative is more than just an effort to clean a river — its a reflection of our cultural, spiritual, and environmental responsibility.
 
-Our team has actively organized riverside cleanliness drives, awareness rallies, plastic-free campaigns, and water conservation workshops along the Ganga's banks.
+Our team has actively organized riverside cleanliness drives, awareness rallies, plastic-free campaigns, and water conservation workshops along the Gangas banks.
 
 The goal is not only to make the Ganga pollution-free but also to ignite a lasting environmental consciousness in society. </p>
       <Link href="#gallery">

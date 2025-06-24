@@ -7,8 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+// import { Images } from "lucide-react";
 
-const images = [
+type ImageItem = { src: string }; // ✅ Define a type for image items
+
+const images: ImageItem[] = [
 
   { src: "/images/green_ngo/green_ngo.jpeg" },
   { src: "/images/green_ngo/green_ngo1.jpeg" },
@@ -17,26 +20,27 @@ const images = [
 ];
 
 const GreenerEarth = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const lightboxRef = useRef(null);
-
-  const openLightbox = (img) => setSelectedImage(img);
-  const closeLightbox = () => setSelectedImage(null);
-
-  const navigateLightbox = (direction) => {
-    const currentIndex = images.findIndex((img) => img.src === selectedImage.src);
-    const nextIndex =
-      direction === "next"
-        ? (currentIndex + 1) % images.length
-        : (currentIndex - 1 + images.length) % images.length;
-    setSelectedImage(images[nextIndex]);
-  };
-
-  useEffect(() => {
-    if (selectedImage && lightboxRef.current) {
-      lightboxRef.current.focus();
-    }
-  }, [selectedImage]);
+    const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null); // ✅ Type specified
+    const lightboxRef = useRef<HTMLDivElement | null>(null);
+  
+    const openLightbox = (img: ImageItem) => setSelectedImage(img); // ✅ Fixed typing
+    const closeLightbox = () => setSelectedImage(null);
+  
+    const navigateLightbox = (direction: "next" | "prev") => {
+      if (!selectedImage) return;
+      const currentIndex = images.findIndex((img) => img.src === selectedImage.src);
+      const nextIndex =
+        direction === "next"
+          ? (currentIndex + 1) % images.length
+          : (currentIndex - 1 + images.length) % images.length;
+      setSelectedImage(images[nextIndex]);
+    };
+  
+    useEffect(() => {
+      if (selectedImage && lightboxRef.current) {
+        lightboxRef.current.focus();
+      }
+    }, [selectedImage]);
 
   return (
     <main className="w-full bg-cream-50">
@@ -61,18 +65,20 @@ const GreenerEarth = () => {
   <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
     
     {/* Left Side - Image */}
-    <motion.div
-      className="w-full lg:w-1/2"
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <img
-        src="https://images.pexels.com/photos/35196/water-plant-green-fine-layers.jpg" // <-- Replace with your actual image path
-        alt="News Coverage"
-        className="w-full h-auto rounded-xl shadow-lg object-cover"
-      />
-    </motion.div>
+   <motion.div
+  className="w-full lg:w-1/2"
+  initial={{ opacity: 0, x: -30 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+>
+  <Image
+    src="https://images.pexels.com/photos/35196/water-plant-green-fine-layers.jpg"
+    alt="desc"
+    width={500}
+    height={300}
+    className="w-full h-auto rounded-xl shadow-lg object-cover"
+  />
+</motion.div>
 
     {/* Right Side - Content */}
     <motion.div
