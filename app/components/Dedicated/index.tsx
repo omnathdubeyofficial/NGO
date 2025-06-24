@@ -93,7 +93,7 @@ const Dedicated = () => {
 
 
         <Link href={link}>
-          <button className="bg-navyblue mt-4 text-white px-8 py-3  hover:bg-hoblue shadow-lg transition">
+          <button className="bg-navyblue mt-4 text-white px-8 py-3  hover:bg-lightblack shadow-lg transition">
             {button}
           </button>
         </Link>
