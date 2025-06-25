@@ -11,31 +11,56 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   {
-    name: "About Us",
-    href: "#aboutus-section",
+    name: "Home",
+    href: "/",
+    current: false,
+  },
+
+    {
+    name: "Climate Emergencies",
+    href: "#",
     current: false,
   },
   {
-    name: "Our Services",
+    name: "Initiatives",
     current: false,
     children: [
-      { name: "Medical Aid", href: "/app/components/Banner/index.tsx", current: false },
-      { name: "Child Support", href: "#child-support", current: false },
-      { name: "Skill Development", href: "#skill-dev", current: false },
+      { name: "Cloth For Work", href: "#", current: false },
+      { name: "Not Just A Piece Of Cloth", href: "#", current: false },
+      {name: "School To School", href: "#", current: false},
+      {name: "Rahat", href: "#", current: false},
+      {name:"Green By BSSS", href: "#", current: false}
     ],
   },
   {
-    name: "Programs",
+    name: "Get Involved",
     current: false,
     children: [
-      { name: "Health Program", href: "#health-program", current: false },
-      { name: "Education Program", href: "#education-program", current: false },
+           { name: "Collection Camps", href: "#", current: false },
+      { name: "Dropping Centers", href: "#", current: false },
+      {name: "volunteer", href: "#", current: false},
+      {name: "Partner with Us", href: "#", current: false},
+      {name:"Baithak", href: "#", current: false},
+      {name: "Fellowship", href: "#", current: false},
+      {name: "Career", href: "#", current: false},
+      {name: "Internship", href: "#", current: false},
     ],
   },
-  { name: "Partners", href: "#partners-section", current: false },
-  { name: "Testimonials", href: "#testimonial-section", current: false },
-  { name: "News & Updates", href: "#news-section", current: false },
-  { name: "Contact Us", href: "#contact-section", current: false },
+
+    {
+    name: "Updates",
+    current: false,
+    children: [
+    { name: "Menstruation Dialogue", href: "#" , current: false },
+      { name: "Dignity Diaries", href: "#", current: false  },
+      {name: "Chaupal 2025", href: "#", current: false },
+      {name: "Junoon Awards", href: "#", current: false },
+      {name:"Disaster Photo Updates", href: "#", current: false },
+      {name: "Saree Campaign", href: "#", current: false },
+      {name: "Cloth Day", href: "#", current: false },
+    ],
+  },
+  { name: "About Us", href: "#", current: false },
 ];
 
 function classNames(...classes: string[]) {

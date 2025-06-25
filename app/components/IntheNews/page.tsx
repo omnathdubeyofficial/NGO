@@ -92,7 +92,7 @@ const IntheNews = () => {
 
     {/* Right Side - Content */}
     <motion.div
-      className="w-full lg:w-1/2 text-center lg:text-left"
+      className="w-full lg:w-1/2 text-left lg:text-left"
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}

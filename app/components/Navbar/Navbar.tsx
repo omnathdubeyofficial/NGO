@@ -9,7 +9,7 @@ import Contactusform from "./Contactus";
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "#aboutus" },
+  { name: "Climate Emergencies", href: "#" },
   // {
   //   name: "Our Services",
   //   subItems: [
@@ -19,16 +19,43 @@ const navItems = [
   //   ],
   // },
   {
-    name: "Programs",
+    name: "Initiatives",
     subItems: [
-      { name: "Annual Camps", href: "#annual" },
-      { name: "Blood Donation", href: "#blood" },
+      { name: "Cloth For Work", href: "#" },
+      { name: "Not Just A Piece Of Cloth", href: "#" },
+      {name: "School To School", href: "#"},
+      {name: "Rahat", href: "#"},
+      {name:"Green By BSSS", href: "#"}
     ],
   },
-  { name: "Partners", href: "#partners" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "News", href: "#news" },
-  { name: "Contact", href: "#contact" },
+    {
+    name: "Get Involved",
+    subItems: [
+      { name: "Collection Camps", href: "#" },
+      { name: "Dropping Centers", href: "#" },
+      {name: "volunteer", href: "#"},
+      {name: "Partner with Us", href: "#"},
+      {name:"Baithak", href: "#"},
+      {name: "Fellowship", href: "#"},
+      {name: "Career", href: "#"},
+      {name: "Internship", href: "#"},
+    ],
+  },
+    {
+    name: "Updates",
+    subItems: [
+      { name: "Menstruation Dialogue", href: "#" },
+      { name: "Dignity Diaries", href: "#" },
+      {name: "Chaupal 2025", href: "#"},
+      {name: "Junoon Awards", href: "#"},
+      {name:"Disaster Photo Updates", href: "#"},
+      {name: "Saree Campaign", href: "#"},
+      {name: "Cloth Day", href: "#"},
+    ],
+  },
+
+  { name: "About Us", href: "#" },
+
 ];
 
 export default function Navbar() {

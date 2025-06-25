@@ -18,12 +18,12 @@ const Banner = () => {
           Join our mission to empower communities through education, environmental initiatives, and livelihood support. Every step with us is a stride towards a better tomorrow.
         </p>
         <div className="flex flex-wrap gap-4">
-          <Link href="/donate">
+          <Link href="/">
             <button className="bg-navyblue text-white px-6 py-3 rounded-full hover:bg-emerald-700 shadow transition">
               Donate Now
             </button>
           </Link>
-          <Link href="/join">
+          <Link href="/">
             <button className="bg-white text-emerald-600 border border-emerald-600 px-6 py-3 rounded-full hover:bg-emerald-50 transition">
               Join Us
             </button>
