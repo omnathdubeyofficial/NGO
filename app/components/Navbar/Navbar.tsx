@@ -154,7 +154,7 @@ export default function Navbar() {
                 )}
                 {/* Donation Button */}
                 <Link
-                  href="#"
+                  href="/components/Donation"
                   className="inline-flex items-center px-4 py-2 bg-navyblue text-white text-sm font-semibold rounded-full hover:bg-blue-700 transition-colors duration-200"
                 >
                   Donate Now
