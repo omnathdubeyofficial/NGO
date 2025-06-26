@@ -23,7 +23,7 @@ const Banner = () => {
               Donate Now
             </button>
           </Link>
-          <Link href="/">
+          <Link href="/components/join">
             <button className="bg-white text-emerald-600 border border-emerald-600 px-6 py-3 rounded-full hover:bg-emerald-50 transition">
               Join Us
             </button>
