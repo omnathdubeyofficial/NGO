@@ -2,7 +2,7 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-    output: 'export',
+    // output: 'export',
    images: {
     unoptimized: true, // 👈 disables the built-in Image Optimization API
   },

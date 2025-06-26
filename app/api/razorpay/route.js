@@ -1,6 +1,6 @@
 import Razorpay from "razorpay";
-console.log("💡 RAZORPAY_KEY_ID =>", process.env.RAZORPAY_KEY_ID);
-console.log("💡 RAZORPAY_SECRET =>", process.env.RAZORPAY_SECRET);
+// console.log("💡 RAZORPAY_KEY_ID =>", process.env.RAZORPAY_KEY_ID);
+// console.log("💡 RAZORPAY_SECRET =>", process.env.RAZORPAY_SECRET);
 
 export async function POST(req) {
   const body = await req.json();
