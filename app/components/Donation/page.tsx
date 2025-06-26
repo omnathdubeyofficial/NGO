@@ -117,6 +117,18 @@ export default function DonationForm() {
           email: formData.email,
           contact: formData.mobile,
         },
+        notes: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          mobile: formData.mobile,
+          country: formData.country,
+          city: formData.city,
+          state: formData.state,
+          pin: formData.pin,
+          address: formData.address,
+          pan: formData.pan,
+        },
         theme: {
           color: "#1B4332",
         },
@@ -139,7 +151,7 @@ export default function DonationForm() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 to-blue-100 py-44 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div className="max-w-4xl w-full bg-offwhite  shadow-2xl p-6 sm:p-10 space-y-8">
+      <div className="max-w-4xl w-full bg-offwhite shadow-2xl p-6 sm:p-10 space-y-8">
         <div className="text-center">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-green-900">
             Support Our Cause
@@ -147,18 +159,16 @@ export default function DonationForm() {
           <p className="mt-2 text-gray-600 text-sm sm:text-base">
             Your generosity fuels our mission for a better tomorrow.
           </p>
-  <div className="bg-[#FEE2E2] border-l-4 border-[#DC2626] text-[#7F1D1D] p-5 rounded-xl shadow-lg max-w-xl mx-auto mt-6">
-  <p className="font-semibold text-base flex items-left">
-    🧾 <span className="ml-2">Important:</span>
-  </p>
-  <ul className="list-disc ml-6 mt-2 space-y-1 text-sm text-left leading-relaxed">
-    <li>This receipt can be downloaded only once.</li>
-    <li>Do not click back or reload the page.</li>
-    <li>We are not responsible if the receipt is lost.</li>
-  </ul>
-</div>
-
-
+          <div className="bg-[#FEE2E2] border-l-4 border-[#DC2626] text-[#7F1D1D] p-5 rounded-xl shadow-lg max-w-xl mx-auto mt-6">
+            <p className="font-semibold text-base flex items-left">
+              🧾 <span className="ml-2">Important:</span>
+            </p>
+            <ul className="list-disc ml-6 mt-2 space-y-1 text-sm text-left leading-relaxed">
+              <li>This receipt can be downloaded only once.</li>
+              <li>Do not click back or reload the page.</li>
+              <li>We are not responsible if the receipt is lost.</li>
+            </ul>
+          </div>
         </div>
 
         {/* Amount Selection */}
@@ -167,10 +177,10 @@ export default function DonationForm() {
             <button
               key={amt}
               onClick={() => handleInputChange({ target: { name: "amount", value: amt } })}
-              className={`px-4 sm:px-6 py-2 sm:py-3  font-semibold text-sm sm:text-base transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 font-semibold text-sm sm:text-base transition-all duration-300 ${
                 formData.amount === amt
                   ? "bg-navyblue text-white shadow-lg"
-                  : "border border-gray-400  focus:outline-none focus:border-blue-500 text-black hover:bg-green-200"
+                  : "border border-gray-400 focus:outline-none focus:border-blue-500 text-black hover:bg-green-200"
               }`}
             >
               ₹{amt}
@@ -178,10 +188,10 @@ export default function DonationForm() {
           ))}
           <button
             onClick={() => handleInputChange({ target: { name: "amount", value: "custom" } })}
-            className={`px-4 sm:px-6 py-2 sm:py-3  font-semibold text-sm sm:text-base transition-all duration-300 ${
+            className={`px-4 sm:px-6 py-2 sm:py-3 font-semibold text-sm sm:text-base transition-all duration-300 ${
               formData.amount === "custom"
                 ? "bg-navyblue text-white shadow-lg"
-                : "border border-gray-400  focus:outline-none focus:border-blue-500 text-black hover:bg-green-200"
+                : "border border-gray-400 focus:outline-none focus:border-blue-500 text-black hover:bg-green-200"
             }`}
           >
             Other Amount
@@ -193,7 +203,7 @@ export default function DonationForm() {
             type="number"
             name="customAmount"
             placeholder="Enter Amount (₹)"
-            className="w-full p-3 sm:p-4 border border-gray-300  focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm sm:text-base"
+            className="w-full p-3 sm:p-4 border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm sm:text-base"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -203,22 +213,21 @@ export default function DonationForm() {
 
         {/* Form Fields */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-       <input
-  type="email"
-  name="email"
-  placeholder="Email Address *"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
-  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-    handleInputChange({ target: { name: e.target.name, value: e.target.value } })
-  }
-  required
-/>
-
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address *"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleInputChange({ target: { name: e.target.name, value: e.target.value } })
+            }
+            required
+          />
           <input
             type="tel"
             name="mobile"
             placeholder="Mobile Number *"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -229,7 +238,7 @@ export default function DonationForm() {
             type="text"
             name="firstName"
             placeholder="First Name"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -238,7 +247,7 @@ export default function DonationForm() {
             type="text"
             name="lastName"
             placeholder="Last Name"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -247,7 +256,7 @@ export default function DonationForm() {
             type="text"
             name="country"
             placeholder="Country"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -256,7 +265,7 @@ export default function DonationForm() {
             type="text"
             name="state"
             placeholder="State"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -265,7 +274,7 @@ export default function DonationForm() {
             type="text"
             name="city"
             placeholder="City"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -274,7 +283,7 @@ export default function DonationForm() {
             type="text"
             name="pin"
             placeholder="PIN Code"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -283,7 +292,9 @@ export default function DonationForm() {
             type="text"
             name="address"
             placeholder="Address"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border{Paused here due to character limit; continuing below}
+
+-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -292,7 +303,7 @@ export default function DonationForm() {
             type="text"
             name="pan"
             placeholder="PAN Card Number"
-  className="input p-3 border border-gray-400  focus:outline-none focus:border-blue-500"
+            className="input p-3 border border-gray-400 focus:outline-none focus:border-blue-500"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleInputChange({ target: { name: e.target.name, value: e.target.value } })
             }
@@ -301,7 +312,7 @@ export default function DonationForm() {
 
         <button
           onClick={handlePayment}
-          className="w-full bg-navyblue hover:bg-green-800 text-white font-semibold py-3 sm:py-4  text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300"
+          className="w-full bg-navyblue hover:bg-green-800 text-white font-semibold py-3 sm:py-4 text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300"
         >
           Proceed to Pay
         </button>
@@ -355,21 +366,20 @@ export default function DonationForm() {
             </p>
             <div className="absolute bottom-0 left-0 w-full h-2 bg-green-700" />
             <div className="flex gap-4 mt-6 max-w-md w-full">
-            <button
-              onClick={generateReceipt}
-              className="flex-1 bg-navyblue text-white py-3 rounded-xl font-semibold text-sm sm:text-base hover:bg-green-800 transition-all shadow-md"
-            >
-              Download Receipt
-            </button>
-            <button
-              onClick={() => setPaymentDetails(null)}
-              className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold text-sm sm:text-base hover:bg-gray-300 transition-all shadow-md"
-            >
-              Close
-            </button>
+              <button
+                onClick={generateReceipt}
+                className="flex-1 bg-navyblue text-white py-3 rounded-xl font-semibold text-sm sm:text-base hover:bg-green-800 transition-all shadow-md"
+              >
+                Download Receipt
+              </button>
+              <button
+                onClick={() => setPaymentDetails(null)}
+                className="flex-1 bg-gray-200 text-gray-700 py-3 rounded-xl font-semibold text-sm sm:text-base hover:bg-gray-300 transition-all shadow-md"
+              >
+                Close
+              </button>
+            </div>
           </div>
-          </div>
-          
         </div>
       )}
 
