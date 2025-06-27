@@ -88,31 +88,31 @@ const Footer = () => {
           </p>
           <div className="flex gap-3">
             <a
-              href="#"
+              href="https://www.facebook.com/share/15nPC2h14B/"
               className="w-9 h-9 flex items-center justify-center border border-black rounded-full transition duration-300 hover:bg-[#004D40] hover:text-white"
             >
               <FaFacebookF />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/bhagirathsahyogseva?igsh=b2d5cHJ5b24xdnhq"
               className="w-9 h-9 flex items-center justify-center border border-black rounded-full transition duration-300 hover:bg-[#004D40] hover:text-white"
             >
               <FaInstagram />
             </a>
             <a
-              href="#"
+              href="https://youtube.com/@bsssofficial?si=ETB6HC9Pfy4DV5IA"
               className="w-9 h-9 flex items-center justify-center border border-black rounded-full transition duration-300 hover:bg-[#004D40] hover:text-white"
             >
               <FaYoutube />
             </a>
             <a
-              href="#"
+              href="https://wa.me/919453838751"
               className="w-9 h-9 flex items-center justify-center border border-black rounded-full transition duration-300 hover:bg-[#004D40] hover:text-white"
             >
               <FaWhatsapp />
             </a>
             <a
-              href="#"
+              href="https://x.com/BhagirathSSS?t=CnRsgzyoIl7G16MMaYn0OQ&s=09"
               className="w-9 h-9 flex items-center justify-center border border-black rounded-full transition duration-300 hover:bg-[#004D40] hover:text-white"
             >
               <FaXTwitter />
@@ -145,7 +145,7 @@ const Footer = () => {
         <p>© {new Date().getFullYear()} Bhagirath Sahayog Seva Sansthan. All Rights Reserved.</p>
         <p className="mt-1">
           Designed & Developed by Omnath Dubey |{" "}
-          <Link href="https://vaekon.com" className="hover:underline text-black">
+          <Link href="https://vaekoninfotech.com" className="hover:underline text-black">
             VaeKon InfoTech
           </Link>
         </p>

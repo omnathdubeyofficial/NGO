@@ -34,41 +34,41 @@ const teamData = [
   },
   {
     profession: "National Vice President",
-    name: "Dr. Kajol Babusingh Bais",
+    name: "Dr. Kajol Bayas",
     imgSrc: "/images/kajol.jpg",
     social: {
-      facebook: "#",
-      instagram: "#",
-      linkedin: "#",
-      youtube: "#",
-      whatsapp: "#",
-      x: "#",
+      facebook: "https://www.facebook.com/kajol.bayas.7?mibextid=ZbWKwL",
+      instagram: "https://www.instagram.com/kajolbayas_?igsh=enVvaGU5ZHpuNWd3",
+      linkedin: "https://www.linkedin.com/in/dr-kajol-bayas-b06069194?trk=contact-info",
+      // youtube: "#",
+      // whatsapp: "#",
+      x: "https://x.com/KajolBayas?t=2xlzrfQz6DoOPenS0Cg7wg&s=08",
     },
   },
   {
     profession: "National Secretary",
-    name: "Avneesh Singh Chandel",
+    name: "Avanish Singh Chandel",
     imgSrc: "/images/avi.jpg",
     social: {
-      facebook: "#",
-      instagram: "#",
-      linkedin: "#",
-      youtube: "#",
-      whatsapp: "#",
-      x: "#",
+      facebook: "https://www.facebook.com/share/19UwPHJtAz/",
+      instagram: "https://www.instagram.com/avanishsinghchandel9119?igsh=MXd5YzYwZ3BnbGRsYQ==",
+      linkedin: "https://www.linkedin.com/in/avanishsinghchandel?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      // youtube: "#",
+      whatsapp: "https://wa.me/919453838751",
+      x: "https://x.com/Avanish9453?t=5eOYlp2GwDevbyV6GwWwag&s=09",
     },
   },
   {
-    profession: "IT Head",
+    profession: "Chief Information Officer (CIO)",
     name: "Omnath Dubey",
     imgSrc: "/images/249064878_ea40.webp",
     social: {
-      facebook: "#",
-      instagram: "#",
-      linkedin: "#",
-      youtube: "#",
-      whatsapp: "#",
-      x: "#",
+      facebook: "https://www.facebook.com/profile.php?id=61561864202816#",
+      instagram: "https://www.instagram.com/omnathdubeyofficial/?__pwa=1",
+      linkedin: "https://www.linkedin.com/in/omnathdubeyofficial/",
+      // youtube: "#",
+      whatsapp: "https://wa.me/919838381169",
+      x: "https://x.com/dubeyomofficial?t=tES5rANJBMq5pBhMYvhrrA&s=09",
     },
   },
 ];
@@ -78,14 +78,14 @@ const missionData = [
     icon: <Users size={48} className="text-blue-600 mb-4" />,
     title: "Our Mission",
     description:
-      "To uplift marginalized communities by providing access to education, healthcare, and sustainable development.",
+      "Our mission is to uplift marginalized and underserved communities by breaking systemic barriers and enabling access to essential services. We believe that every human being deserves the right to quality education, primary healthcare, and sustainable livelihood opportunities. Through community-led initiatives, partnerships, and innovation, we work towards building self-reliant communities.",
     link: "#mission",
   },
   {
     icon: <Lightbulb size={48} className="text-yellow-500 mb-4" />,
     title: "Our Vision",
     description:
-      "A world where every individual has equal opportunity to live with dignity, security, and hope.",
+      "We envision a world where no one is left behind — a future in which every individual, regardless of background, gender, or geography, can access equal opportunities to live a life of purpose and well-being. Our vision is rooted in compassion, equity, and resilience, aiming for long-term systemic change across generations.",
     link: "#vision",
   },
   {
@@ -155,13 +155,24 @@ const Dedicated = () => {
                 {member.name}
               </h4>
               <p className="text-gray-600 text-sm mt-1">{member.profession}</p>
-              <div className="flex justify-center gap-3 mt-4 flex-wrap">
-                <SocialIcon icon={<FaFacebookF />} href={member.social.facebook} />
-                <SocialIcon icon={<FaInstagram />} href={member.social.instagram} />
-                <SocialIcon icon={<FaLinkedinIn />} href={member.social.linkedin} />
-                <SocialIcon icon={<FaWhatsapp />} href={member.social.whatsapp} />
-                <SocialIcon icon={<FaXTwitter />} href={member.social.x} />
-              </div>
+          <div className="flex justify-center gap-3 mt-4 flex-wrap">
+  {member.social.facebook?.startsWith("https") && (
+    <SocialIcon icon={<FaFacebookF />} href={member.social.facebook} />
+  )}
+  {member.social.instagram?.startsWith("https") && (
+    <SocialIcon icon={<FaInstagram />} href={member.social.instagram} />
+  )}
+  {member.social.linkedin?.startsWith("https") && (
+    <SocialIcon icon={<FaLinkedinIn />} href={member.social.linkedin} />
+  )}
+  {member.social.whatsapp?.startsWith("https") && (
+    <SocialIcon icon={<FaWhatsapp />} href={member.social.whatsapp} />
+  )}
+  {member.social.x?.startsWith("https") && (
+    <SocialIcon icon={<FaXTwitter />} href={member.social.x} />
+  )}
+</div>
+
             </div>
           ))}
         </div>
